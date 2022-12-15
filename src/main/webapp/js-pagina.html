@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Dimostrazione Javascript</title>
+<!-- inserire il tag javascript per le librerie -->
+<script></script>
+</head>
+<body>
+	<ul>
+		<li><a href="./index.html">Vai alla Home</a></li>
+	</ul>
+
+	<h1>Dimostrazione Javascript</h1>
+
+	<input type="text" id="testo01">
+	<br>
+	<br>
+	<input type="button" id="bt01" value="copia testo"
+		onclick="eseguiCopia()"> &nbsp;
+	<input type="button" id="bt02" value="copia testo v2"
+		onclick="eseguiCopia2()"> &nbsp;
+	<input type="button" id="bt03" value="copia testo v3"
+		onclick="eseguiCopia3()">
+
+	<br>
+	<br>
+	<input type="text" id="testo02">
+
+
+	<!-- inserire il tag javascript appena prima </body> -->
+	<script>
+
+		let obj = {
+				prop1: 100,
+				prop2: 'Hello'
+		}
+		console.log('*******', obj.prop2);
+		obj.prop3 = 'xxx';
+		console.log('*******', obj);
+		console.log('*******', obj['prop2']);
+ 		//console.log('*******', obj[2]);  			NON si può fare
+
+		// commento
+		/* commento */
+		/** commento ma ci vuole un'estensione per usarla jsdoc*/
+
+		// siamo all'interno del global object
+
+		console.log("Hello World");
+		console.log("Hello World".toUpperCase());
+		console.log("Hello World".toLowerCase());
+
+		console.log("Hello World");
+		console.log(typeof "Hello World");
+		console.log(typeof 15); // è un double se lo paragoniamo a java, in realta qui si chiama float
+
+		let hello = "Ciao Mondo!!!"
+		console.log(hello);
+		console.log(typeof hello, hello);
+
+		hello = 100 * 12.76;
+		console.log(hello);
+		console.log(typeof hello, hello);
+
+		/*
+		alla pressione del bottone copiare il testo scritto nella casella sotto
+		 */
+
+		function eseguiCopia() {
+			console.log("eseguiCopia:", window.event);
+			const sorgente = document.getElementById("testo01"); // const ===> let final = const
+			const destinazione = document.getElementById("testo02");
+			destinazione.value = sorgente.value; // effettuo la copia
+			sorgente.value = ""; // pulisco
+		}
+
+		/*
+		alla pressione del bottone se il campo 1 è pieno,
+		sposta in campo2. se campo2 è pieno,
+		sposta in punto
+		 */
+
+		function eseguiCopia2() {
+			const sorgente = document.getElementById("testo01"); // const ===> let final = const
+			const destinazione = document.getElementById("testo02");
+
+			const src = sorgente.value.trim(); // sposta gli spazi dalla testa e dalla coda
+			const dst = destinazione.value.trim();
+
+			if (src.length > 0) {
+				destinazione.value = src;
+				sorgente.value = "";
+				return;
+			}
+			sorgente.value = dst; // effettuo la copia
+			destinazione.value = ""; // pulisco
+		}
+
+		// creare una funzione esegui copia 3
+		// quando copio da sorgente a destinazione applico la uppercase
+		// quando copio da destinazione a sorgente applico la lowercase
+		function eseguiCopia3() {
+			const sorgente = document.getElementById("testo01"); // const ===> let final = const
+			const destinazione = document.getElementById("testo02");
+
+			const src = sorgente.value.trim(); // sposta gli spazi dalla testa e dalla coda
+			const dst = destinazione.value.trim();
+
+			if (src.length > 0) {
+				destinazione.value = src.toUpperCase();
+				sorgente.value = "";
+				return;
+			}
+			sorgente.value = dst.toLowerCase(); // effettuo la copia
+			destinazione.value = "";
+
+		}
+	</script>
+</body>
+</html>
