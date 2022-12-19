@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+table, tr, th, td {
+	border: 1px solid green;
+	border-collapse: collapse;
+}
+
+caption {
+	background-color: lightgray;
+	text-align: left;
+	font-weight: bold;
+}
+
+tr:nth-child(odd) {
+	background-color: cadetblue;
+}
+
+tr:nth-child(even) {
+	background-color: darkkhaki
+}
+
+thead tr:first-child {
+	background-color: darkgray;
+}
+
+tbody td:nth-child(2) {
+	font-weight: bolder;
+	font-style: italic;
+}

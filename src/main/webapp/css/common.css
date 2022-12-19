@@ -1,0 +1,5 @@
+/*
+    CSS comune a tutta la procedura
+*/
+.invisible { display: none; }
+.visible-block { display: block; }

@@ -1,12 +1,15 @@
 package com.example.geometria.figure;
 
-public class Quadrato extends Rettangolo{
-	
-	private double lato;
+public class Quadrato extends Rettangolo {
+	private final double lato;
 
 	public Quadrato(double lato) {
 		super(lato, lato);
 		this.lato = lato;
+	}
+
+	public double getLato() {
+		return lato;
 	}
 
 	@Override
@@ -16,4 +19,6 @@ public class Quadrato extends Rettangolo{
 				.append(perimetro()).append("]");
 		return builder.toString();
 	}
+
+
 }

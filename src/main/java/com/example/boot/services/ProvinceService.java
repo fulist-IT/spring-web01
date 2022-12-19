@@ -9,25 +9,27 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.boot.repositories.ProvinceRepository;
 import com.example.boot.repositories.RegioniRepository;
+import com.example.database.entity.Provincia;
 import com.example.database.entity.Regione;
 
 @Service
-public class RegioniService {
-	private static final Logger log = LogManager.getLogger(RegioniService.class);
-	@Autowired RegioniRepository repo;
+public class ProvinceService {
+	private static final Logger log = LogManager.getLogger(ProvinceService.class);
+	@Autowired ProvinceRepository repo;
 
-	public List<Regione> findAll() {
+	public List<Provincia> findAll() {
         log.trace("findAll()");
+		log.info("Classe implementante il repository {}", repo.getClass().getName());
         // possiamo elaborare i dati
         // escludere tutte le regioni in cui id è dispari
         return repo.findAll()
         		.stream().parallel()
-        		//.filter(regione -> regione.getId()%2 == 0)
         		.collect(Collectors.toList());
     }
 
-	public Optional<Regione> findById(Integer id) {
+	public Optional<Provincia> findById(Integer id) {
 		log.trace("findById({})", id);
 		return repo.findById(id);
 	}

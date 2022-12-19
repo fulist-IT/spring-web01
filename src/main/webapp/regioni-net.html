@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="js/dom-functions.js"></script>
+    <script type="text/javascript" src="js/net-functions.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/table.css">
+    </link>
+    <title>Elenco regioni</title>
+</head>
+
+<body>
+    <h1>Elenco regioni</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Regione</th>
+                <th>Latitudine</th>
+                <th>Longitudine</th>
+            </tr>
+        </thead>
+        <tbody id="regioni-body"><!-- qui andranno inseriti i dati --></tbody>
+    </table>
+
+    <script>
+        const regioniBody = document.getElementById("regioni-body");
+
+        /* ---------------------------------------- */
+        // prelevare regioni_update.json dal web server ed utilizzarlo come
+        // fonte di dati
+        const regioniUrl = "/regioni";
+
+        /* versione nativa
+        fetch(regioniUrl)
+            .then((response) => response.json()) // fulfill(response)
+            .then((data) => generaListaRegioni(data)) // fulfill(data)
+            .catch( e => alert(e) );
+        */
+        // versione incapsulata della fetch
+        doFetchJson(regioniUrl, null, generaListaRegioni);
+
+        /* ---------------------------------------- */
+
+        function generaListaRegioni(regioni) {
+        	console.log(regioni);
+            // per ogni regione in regioni
+            //for (let regione of regioni) { // cicla su tutte le regioni una ad una
+            regioni.forEach(regione => { // cicla su tutte le regioni una ad una
+                // creare un tr da aggiungere a regioniBody
+                const tr = createAndAppendElement(regioniBody, "tr");
+
+                const tdId = createAndAppendElement(tr, "td");
+                createAndAppendTextNode(tdId, regione.id);
+
+                // crea un elemnto di tipo td (cella dato) ed aggiungilo alla TR corrente
+                const tdRegione = document.createElement("td"); // crea dinamicamente una TD
+                tr.appendChild(tdRegione); // appende la TD come figlio di TR
+                //const tdRegione = createAndAppendElement(tr, "td");
+
+                // piazzare nella cella il nome della regione regione.nome
+                const text = document.createTextNode(regione.nome); // crea un payload di tipo testo
+                tdRegione.appendChild(text); // lo appende alla TD creata in precedenza
+                //createAndAppendTextNode(tdRegione, regione.nome);
+
+                const tdLatitudine = createAndAppendElement(tr, "td");
+                createAndAppendTextNode(tdLatitudine, regione.latitudine);
+
+                const tdLongitudine = createAndAppendElement(tr, "td");
+                createAndAppendTextNode(tdLongitudine, regione.longitudine);
+            });
+        }
+    </script>
+</body>
+
+</html>

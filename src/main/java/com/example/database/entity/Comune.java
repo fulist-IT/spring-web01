@@ -4,10 +4,12 @@ import java.io.Serializable;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * The persistent class for the comuni database table.
- * 
+ *
  */
 @Entity
 @Table(name="comuni")
@@ -40,11 +42,13 @@ public class Comune implements Serializable {
 	//bi-directional many-to-one association to Provincia
 	@ManyToOne
 	@JoinColumn(name="id_provincia", nullable=false)
+	@JsonIgnore
 	private Provincia provincia;
 
 	//bi-directional many-to-one association to Regione
 	@ManyToOne
 	@JoinColumn(name="id_regione", nullable=false)
+	@JsonIgnore
 	private Regione regione;
 
 	public Comune() {

@@ -1,7 +1,7 @@
 package com.example.geometria.figure;
 
-public class FiguraIrregolare extends FiguraGeometrica{
-	
+public class FiguraIrregolare extends FiguraGeometrica {
+
 	private double area;
 	private double perimetro;
 
@@ -19,6 +19,13 @@ public class FiguraIrregolare extends FiguraGeometrica{
 	@Override
 	public double perimetro() {
 		return perimetro;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("FiguraIrregolare [perimetro=").append(perimetro).append(", area=").append(area).append("]");
+		return builder.toString();
 	}
 
 }

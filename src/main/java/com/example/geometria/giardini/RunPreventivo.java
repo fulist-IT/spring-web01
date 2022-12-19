@@ -3,12 +3,12 @@ package com.example.geometria.giardini;
 import com.example.geometria.figure.Cerchio;
 import com.example.geometria.figure.Quadrato;
 import com.example.geometria.figure.Rettangolo;
-import static com.example.geometria.giardini.Zona.*;
+import static com.example.geometria.giardini.Regole.*;
 
 public class RunPreventivo {
 
 	public static void main(String[] args) {
-		Preventivo preventivo = new Preventivo();
+		Preventivo preventivo = new Preventivo("Attilio","Infame","casa Sua", "cellulare");
 
 		// 2 rettangoli 20x3
 		for(int i=0; i<2; i++) {
@@ -35,7 +35,7 @@ public class RunPreventivo {
 
 		String report = String.format("Numero aiuole=%s - Costo Prato=%s - Costo Siepe=%s", preventivo.count(), preventivo.prato(), preventivo.siepe());
 		System.out.println(report);
-		
+
 		//preventivo.add(new Zona(28.0, 35.0).withArea(NO).withPerimetro(NO));
 	}
 

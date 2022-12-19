@@ -1,9 +1,13 @@
 package com.example.geometria.figure;
 
-public abstract class FiguraGeometrica implements Misurabile{
-	
+import java.io.Serializable;
+
+public abstract class FiguraGeometrica extends Object implements Misurabile, Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	public abstract double area();
-	
+
 	public abstract double perimetro();
 
 	@Override
@@ -13,5 +17,5 @@ public abstract class FiguraGeometrica implements Misurabile{
 				.append("]");
 		return builder.toString();
 	}
-	
+
 }

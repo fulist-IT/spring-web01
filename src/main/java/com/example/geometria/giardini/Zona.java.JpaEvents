@@ -25,15 +25,14 @@ public class Zona implements Misurabile, Serializable  {
 	@Column(nullable=false)
 	private String descrizione = "";
 
-
 	// le due annotation seguenti vanno abilitate per la conversione di Misurabile
 	// in una colonna di Zona (ovvero per utilizzare
 	// GeometriaSimpleConverter oppure GeometriaSerializationConverter
 	// in questo caso disabilitare le annotazioni @PrePersist @PreUpdate @PostLoad
 	// e commentare il @Transient per questa colonna
-	@Column(name="figura", columnDefinition="text not null")
-	@Lob
-	// per convertitori	@Transient
+	//***@Column(name="figura", columnDefinition="text not null")
+	//***@Lob
+	@Transient
 	private Misurabile figura;
 
 	@Column(name="funzione_area")
@@ -111,13 +110,7 @@ public class Zona implements Misurabile, Serializable  {
 		return builder.toString();
 	}
 
-	/*
-	 * modifiche per demo JPA Events
-	 * salvataggio di Misurabile in tabella separata tramite
-	 * Entity bridge verso classi di Geometria
-	 * */
-	/* *** commentata per altro approcci alla persistenza di misurabile ***
-	 *
+	/* modifiche solo per demo JPA */
 	// metodo di persistenza basato su event handlers
 	// commentare tutte le annotazioni seguenti
 	// per disabilitare gli eventi e gestire la persistenza serializzando
@@ -138,5 +131,5 @@ public class Zona implements Misurabile, Serializable  {
 		figura = converter.convertToEntityAttribute(figuraGeometricaEntity);
 		figuraGeometricaEntity = null;
 	}
-*/
+
 }

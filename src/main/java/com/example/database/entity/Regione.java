@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * The persistent class for the regioni database table.
@@ -14,12 +16,11 @@ import java.util.List;
 @Table(name="regioni")
 @NamedQuery(name="Regione.findAll", query="SELECT r FROM Regione r")
 public class Regione implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(updatable=false, unique=true, nullable=false)
+	@Column(unique=true, nullable=false)
 	private Integer id;
 
 	@Column(nullable=false, precision=10, scale=6)
@@ -34,10 +35,12 @@ public class Regione implements Serializable {
 
 	//bi-directional many-to-one association to Comune
 	@OneToMany(mappedBy="regione")
+	@JsonIgnore
 	private List<Comune> comuni;
 
 	//bi-directional many-to-one association to Provincia
 	@OneToMany(mappedBy="regione")
+	@JsonIgnore // aggiunto per limitare l'output e rendere più leggero
 	private List<Provincia> province;
 
 	public Regione() {
@@ -134,5 +137,6 @@ public class Regione implements Serializable {
 				.append(latitudine).append(", longitudine=").append(longitudine).append("]");
 		return builder.toString();
 	}
+
 
 }

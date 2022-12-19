@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.example.boot.services.ProvinceService;
 import com.example.boot.services.RegioniService;
 import com.example.database.entity.Regione;
 
@@ -19,24 +20,25 @@ import com.example.database.entity.Regione;
 class RegioniRepositoryTest {
 	private static final Logger log = LogManager.getLogger(RegioniRepositoryTest.class);
 	@Autowired RegioniService service;
+
 	@Test
-    void testFindAllExampleOfS() {
-        log.info("Classe implementante il repository {}", service.getClass().getName());
-        List<Regione> regioni = service.findAll();
-        assertTrue(regioni.size() > 0);
-        // regioni.forEach(regione -> log.info("", regione));
-        regioni.forEach(log::info); // method references
-    }
+	void testFindAllExampleOfS() {
+		log.info("Classe implementante il service {}", service.getClass().getName());
+		List<Regione> regioni = service.findAll();
+		assertTrue(regioni.size() > 0);
+		// regioni.forEach(regione -> log.info("", regione));
+		regioni.forEach(log::info); // method references
+	}
+
 
 	@Test
     void testFindById() {
-		log.info("Classe implementante il repository {}", service.getClass().getName());
         List<Regione> regioni = service.findAll();
         Collections.shuffle(regioni);
+        assertTrue(regioni.size()>0);
         Optional<Regione> opt = service.findById(regioni.get(0).getId());
         assert(opt.isPresent());
-        log.debug("eccomi!!{}", opt.get());
-
-
+        log.debug("eccomi!!{}",opt.get());
     }
+
 }
